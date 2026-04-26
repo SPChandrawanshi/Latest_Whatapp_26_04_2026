@@ -3,6 +3,14 @@ import { DataTable } from '../../components/tables/DataTable';
 import { Users, UserPlus, Filter, ShieldCheck, Mail, MapPin } from 'lucide-react';
 
 export default function Team() {
+  const handleAddAgent = () => {
+    alert('Opening "Add New Agent" modal...');
+  };
+
+  const handleStatClick = (label) => {
+    alert(`Showing detailed report for: ${label}`);
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -10,8 +18,11 @@ export default function Team() {
           <h2 className="text-3xl font-black text-[#0a3d62] tracking-tighter uppercase italic">My Active Team</h2>
           <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-1">Manage and Track Your Agent Performance</p>
         </div>
-        <button className="px-6 py-3 bg-[#0a3d62] text-white rounded-2xl shadow-xl font-black uppercase text-xs tracking-widest flex items-center gap-2 hover:scale-[1.02] transition-transform">
-          <UserPlus className="w-4 h-4" />
+        <button 
+          onClick={handleAddAgent}
+          className="px-6 py-4 bg-[#0a3d62] text-white rounded-2xl shadow-xl font-black uppercase text-[10px] tracking-widest flex items-center gap-3 hover:translate-y-[-2px] hover:shadow-[#0a3d62]/20 active:scale-95 transition-all"
+        >
+          <UserPlus className="w-5 h-5" />
           Add Agent
         </button>
       </div>
@@ -23,13 +34,18 @@ export default function Team() {
           { label: 'Top Performers', value: '6', icon: Filter, color: 'text-amber-500 bg-amber-50' },
           { label: 'On Leave', value: '2', icon: Mail, color: 'text-rose-500 bg-rose-50' },
         ].map((stat, i) => (
-          <div key={i} className="bg-white p-6 rounded-3xl shadow-premium border border-transparent hover:border-[#0a3d62] transition-all group">
-            <div className={`w-12 h-12 rounded-2xl ${stat.color} flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform`}>
-              <stat.icon className="w-6 h-6" />
+          <button 
+            key={i} 
+            onClick={() => handleStatClick(stat.label)}
+            className="bg-white p-7 rounded-[2.5rem] shadow-premium border border-transparent hover:border-[#0a3d62] transition-all group flex flex-col items-start relative overflow-hidden active:scale-[0.98] text-left"
+          >
+            <div className={`w-14 h-14 rounded-3xl ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm`}>
+              <stat.icon className="w-7 h-7" />
             </div>
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{stat.label}</p>
-            <h3 className="text-2xl font-black text-[#0a3d62] mt-1">{stat.value}</h3>
-          </div>
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{stat.label}</p>
+            <h3 className="text-3xl font-black text-[#0a3d62] mt-1 tracking-tighter">{stat.value}</h3>
+            <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50/50 rounded-full blur-3xl -translate-y-8 translate-x-8" />
+          </button>
         ))}
       </div>
 
