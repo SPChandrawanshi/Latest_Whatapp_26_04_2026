@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Phone, Video, MoreVertical, Send, Smile, Paperclip, CheckCheck } from 'lucide-react';
+import { Search, Phone, Video, MoreVertical, Send, Smile, Paperclip, CheckCheck, Plus } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export function ChatModule() {
