@@ -1,5 +1,7 @@
+import React from 'react';
 import { ListTodo, Clock, Phone, MessageCircle, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/common/Button';
+import { clsx } from 'clsx';
 
 export default function FollowUps() {
   const [activeTab, setActiveTab] = React.useState('Today');

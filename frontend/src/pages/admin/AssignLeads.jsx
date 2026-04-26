@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListTodo, ArrowRight, UserPlus, Zap, Clock, CheckCircle2 } from 'lucide-react';
 import { Button } from '../../components/common/Button';
+import { clsx } from 'clsx';
 
 export default function AssignLeads() {
   const [isAutoAssign, setIsAutoAssign] = React.useState(true);
