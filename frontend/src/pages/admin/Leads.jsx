@@ -8,47 +8,50 @@ export default function Leads() {
   const handleFilter = () => alert('Opening advanced filter criteria...');
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Header with improved Actions */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h2 className="text-3xl font-black text-[#0a3d62] tracking-tighter uppercase italic">LEADS DATABASE</h2>
-          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-1">Manage and Track All Incoming System Leads</p>
+          <h2 className="text-4xl font-black text-[#0a3d62] tracking-tighter uppercase italic">LEADS DATABASE</h2>
+          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-2 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+            Central Repository for Systemic Lead Tracking
+          </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button 
             onClick={handleAddLead}
-            className="flex items-center gap-3 px-8 py-4 bg-[#0a3d62] rounded-2xl text-[10px] font-black uppercase tracking-widest text-white hover:translate-y-[-2px] hover:shadow-2xl hover:shadow-[#0a3d62]/20 active:scale-95 transition-all outline-none"
+            className="flex items-center gap-4 px-10 py-5 bg-[#0a3d62] rounded-[1.5rem] text-[11px] font-black uppercase tracking-[0.2em] text-white hover:translate-y-[-3px] hover:shadow-2xl hover:shadow-[#0a3d62]/30 active:scale-95 transition-all outline-none group"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
             Add New Lead
           </button>
         </div>
       </div>
 
-      {/* Filter / Search Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="md:col-span-2 relative group">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-[#0a3d62] transition-colors" />
+      {/* Filter / Search Bar XL */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="md:col-span-2 relative group mt-2">
+          <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-slate-300 group-focus-within:text-[#0a3d62] transition-colors" />
           <input 
             type="text" 
-            placeholder="Search by name, email or phone..." 
-            className="w-full pl-14 pr-6 py-4 bg-white border border-slate-100 rounded-[2rem] text-xs font-bold focus:ring-4 focus:ring-[#0a3d62]/5 focus:border-[#0a3d62] transition-all outline-none shadow-premium"
+            placeholder="Search leads by name, email or mobile..." 
+            className="w-full pl-16 pr-8 py-5 bg-white border border-slate-100 rounded-[2.5rem] text-sm font-bold focus:ring-8 focus:ring-[#0a3d62]/5 focus:border-[#0a3d62] transition-all outline-none shadow-premium placeholder:text-slate-300"
           />
         </div>
         <div className="flex items-center gap-4 md:col-span-2 md:justify-end">
            <button 
             onClick={handleFilter}
-            className="flex items-center gap-3 px-6 py-4 bg-white border border-slate-100 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-slate-50 hover:text-[#0a3d62] hover:border-[#0a3d62]/10 active:scale-95 transition-all shadow-sm"
+            className="flex items-center gap-4 px-8 py-5 bg-white border border-slate-100 rounded-3xl text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:bg-slate-50 hover:text-[#0a3d62] hover:border-[#0a3d62]/20 active:scale-95 transition-all shadow-sm"
            >
-             <Filter className="w-4 h-4" />
+             <Filter className="w-5 h-5" />
              Advance Filter
            </button>
            <button 
             onClick={handleExport}
-            className="flex items-center gap-3 px-6 py-4 bg-white border border-slate-100 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-slate-50 hover:text-[#0a3d62] hover:border-[#0a3d62]/10 active:scale-95 transition-all shadow-sm"
+            className="flex items-center gap-4 px-8 py-5 bg-white border border-slate-100 rounded-3xl text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:bg-slate-50 hover:text-[#0a3d62] hover:border-[#0a3d62]/20 active:scale-95 transition-all shadow-sm"
            >
-             <Download className="w-4 h-4" />
+             <Download className="w-5 h-5" />
              Export
            </button>
         </div>

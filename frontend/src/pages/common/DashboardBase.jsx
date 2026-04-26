@@ -7,52 +7,60 @@ export function DashboardBase({ role }) {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-10">
       <div className="flex justify-between items-end">
         <div>
-          <h2 className="text-3xl font-black text-[#0a3d62] tracking-tighter uppercase italic">{role} Overview</h2>
-          <p className="text-slate-400 mt-1 font-bold uppercase tracking-widest text-[10px]">Monitor real-time performance & metrics</p>
+          <h2 className="text-4xl font-black text-[#0a3d62] tracking-tighter uppercase italic">
+            {role} Dashboard
+            <div className="h-1.5 w-24 bg-primary mt-2 rounded-full" />
+          </h2>
+          <p className="text-slate-400 mt-4 font-black uppercase tracking-widest text-[11px] flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            Live System Monitoring Active
+          </p>
         </div>
       </div>
 
-      {/* High Density Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* High Density XL Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
-          { label: 'Leads', value: '1.2k', grow: '+12%', color: 'bg-[#0a3d62]' },
-          { label: 'Chats', value: '42', grow: 'Live', color: 'bg-emerald-500' },
-          { label: 'FollowUp', value: '18', grow: '-2', color: 'bg-amber-500' },
+          { label: 'Leads', value: '1,284', grow: '+12.5%', color: 'bg-[#0a3d62]' },
+          { label: 'Chats', value: '42', grow: 'Active', color: 'bg-emerald-500' },
+          { label: 'FollowUp', value: '18', grow: '-2h', color: 'bg-amber-500' },
           { label: 'Deals', value: '156', grow: '+5%', color: 'bg-rose-500' },
         ].map((stat, i) => (
           <button 
             key={i} 
             onClick={() => handleStatClick(stat.label)}
-            className="bg-white p-6 rounded-[2.5rem] shadow-premium border border-transparent hover:border-primary transition-all flex items-center gap-4 group active:scale-95 text-left"
+            className="bg-white p-8 rounded-[3rem] shadow-premium border border-transparent hover:border-[#0a3d62] hover:shadow-2xl transition-all flex flex-col items-start gap-4 group active:scale-90 text-left relative overflow-hidden"
           >
-            <div className={`w-14 h-14 rounded-2xl ${stat.color} flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform`}>
-              <span className="text-lg font-black uppercase tracking-tighter">{stat.label[0]}</span>
+            <div className={`w-16 h-16 rounded-[1.5rem] ${stat.color} flex items-center justify-center text-white shadow-xl group-hover:rotate-12 transition-transform duration-300`}>
+              <span className="text-2xl font-black uppercase tracking-tighter">{stat.label[0]}</span>
             </div>
             <div>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">{stat.label}</p>
-              <div className="flex items-center gap-2 mt-1">
-                <h3 className="text-xl font-black text-[#0a3d62]">{stat.value}</h3>
-                <span className="text-[9px] font-bold text-slate-300">{stat.grow}</span>
+              <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] leading-none mb-2">{stat.label}</p>
+              <div className="flex items-center gap-3">
+                <h3 className="text-3xl font-black text-[#0a3d62] tracking-tighter">{stat.value}</h3>
+                <span className="text-[10px] font-black text-white px-2 py-0.5 rounded-full bg-slate-800 shadow-sm">{stat.grow}</span>
               </div>
             </div>
+            {/* Subtle deco icon */}
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-slate-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
           </button>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-8 flex flex-col gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="lg:col-span-8 flex flex-col gap-10">
            <button 
-            onClick={() => alert('Opening Full Analytics Dashboard...')}
-            className="bg-white p-8 rounded-[2.5rem] shadow-premium h-80 flex flex-col items-center justify-center border border-slate-50 hover:border-primary hover:shadow-2xl transition-all relative overflow-hidden group active:scale-[0.99]"
+            onClick={() => alert('Opening Full Power Analytics Canvas...')}
+            className="bg-white p-12 rounded-[3.5rem] shadow-premium h-96 flex flex-col items-center justify-center border border-slate-50 hover:border-[#0a3d62] hover:shadow-2xl transition-all relative overflow-hidden group active:scale-[0.98]"
            >
               <div className="text-center z-10">
-                <p className="text-slate-300 font-black text-xl uppercase tracking-[0.3em] group-hover:tracking-[0.5em] group-hover:text-[#0a3d62] transition-all">Analytics Canvas</p>
-                <div className="w-24 h-1 bg-primary/20 mx-auto mt-4 rounded-full group-hover:w-48 group-hover:bg-primary transition-all" />
+                <p className="text-slate-200 font-black text-3xl uppercase tracking-[0.4em] group-hover:tracking-[0.6em] group-hover:text-[#0a3d62] transition-all duration-700">Analytics Canvas</p>
+                <div className="w-32 h-2 bg-[#0a3d62]/10 mx-auto mt-6 rounded-full group-hover:w-64 group-hover:bg-[#0a3d62] transition-all duration-500" />
               </div>
-              <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[100%] bg-primary/5 rounded-full blur-[80px] group-hover:bg-primary/10 transition-all" />
+              <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[100%] bg-[#0a3d62]/5 rounded-full blur-[100px] group-hover:bg-[#0a3d62]/10 transition-all duration-700" />
            </button>
 
            <DataTable 

@@ -13,21 +13,24 @@ export default function Team() {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10">
         <div>
-          <h2 className="text-3xl font-black text-[#0a3d62] tracking-tighter uppercase italic">My Active Team</h2>
-          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-1">Manage and Track Your Agent Performance</p>
+          <h2 className="text-4xl font-black text-[#0a3d62] tracking-tighter uppercase italic">Team Performance</h2>
+          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-2 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#0a3d62] animate-pulse" />
+            Managing Organizational Human Capital Efficiency
+          </p>
         </div>
         <button 
           onClick={handleAddAgent}
-          className="px-6 py-4 bg-[#0a3d62] text-white rounded-2xl shadow-xl font-black uppercase text-[10px] tracking-widest flex items-center gap-3 hover:translate-y-[-2px] hover:shadow-[#0a3d62]/20 active:scale-95 transition-all"
+          className="px-10 py-5 bg-[#0a3d62] text-white rounded-[1.5rem] shadow-2xl font-black uppercase text-[11px] tracking-[0.3em] flex items-center gap-4 hover:translate-y-[-3px] hover:shadow-[#0a3d62]/30 active:scale-95 transition-all group"
         >
-          <UserPlus className="w-5 h-5" />
+          <UserPlus className="w-6 h-6 group-hover:scale-110 transition-transform" />
           Add Agent
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
           { label: 'Total Agents', value: '24', icon: Users, color: 'text-indigo-500 bg-indigo-50' },
           { label: 'Online Now', value: '18', icon: ShieldCheck, color: 'text-emerald-500 bg-emerald-50' },
@@ -37,14 +40,14 @@ export default function Team() {
           <button 
             key={i} 
             onClick={() => handleStatClick(stat.label)}
-            className="bg-white p-7 rounded-[2.5rem] shadow-premium border border-transparent hover:border-[#0a3d62] transition-all group flex flex-col items-start relative overflow-hidden active:scale-[0.98] text-left"
+            className="bg-white p-10 rounded-[3.5rem] shadow-premium border border-transparent hover:border-[#0a3d62] transition-all group flex flex-col items-start relative overflow-hidden active:scale-90 text-left"
           >
-            <div className={`w-14 h-14 rounded-3xl ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm`}>
-              <stat.icon className="w-7 h-7" />
+            <div className={`w-16 h-16 rounded-[1.5rem] ${stat.color} flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform shadow-sm`}>
+              <stat.icon className="w-8 h-8" />
             </div>
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{stat.label}</p>
-            <h3 className="text-3xl font-black text-[#0a3d62] mt-1 tracking-tighter">{stat.value}</h3>
-            <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50/50 rounded-full blur-3xl -translate-y-8 translate-x-8" />
+            <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{stat.label}</p>
+            <h3 className="text-4xl font-black text-[#0a3d62] tracking-tighter">{stat.value}</h3>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full blur-[40px] translate-x-12 translate-y-[-12px] opacity-0 group-hover:opacity-100 transition-opacity" />
           </button>
         ))}
       </div>

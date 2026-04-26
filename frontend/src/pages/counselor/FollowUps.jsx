@@ -21,55 +21,55 @@ export default function FollowUps() {
           <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-1">Don't let a lead go cold. Stay Connected.</p>
         </div>
         <div className="flex bg-white p-1.5 rounded-2xl border border-slate-100 shadow-sm font-black text-[10px] uppercase tracking-widest overflow-hidden">
-           <button 
-             onClick={() => setActiveTab('Today')}
-             className={clsx(
-               "px-6 py-2 rounded-xl transition-all duration-200 active:scale-95",
-               activeTab === 'Today' ? "bg-[#0a3d62] text-white shadow-lg" : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
-             )}
-            >
-              Today
-            </button>
-           <button 
-             onClick={() => setActiveTab('Overdue')}
-             className={clsx(
-               "px-6 py-2 rounded-xl transition-all duration-200 active:scale-95",
-               activeTab === 'Overdue' ? "bg-rose-500 text-white shadow-lg" : "text-slate-400 hover:text-rose-500 hover:bg-rose-50"
-             )}
-            >
-              Overdue
-            </button>
+            <button 
+              onClick={() => setActiveTab('Today')}
+              className={clsx(
+                "px-8 py-3 rounded-2xl transition-all duration-300 active:scale-90 font-black",
+                activeTab === 'Today' ? "bg-[#0a3d62] text-white shadow-xl translate-y-[-1px]" : "text-slate-400 hover:text-[#0a3d62] hover:bg-slate-50"
+              )}
+             >
+               Today
+             </button>
+            <button 
+              onClick={() => setActiveTab('Overdue')}
+              className={clsx(
+                "px-8 py-3 rounded-2xl transition-all duration-300 active:scale-90 font-black",
+                activeTab === 'Overdue' ? "bg-rose-500 text-white shadow-xl translate-y-[-1px]" : "text-slate-400 hover:text-rose-500 hover:bg-rose-50"
+              )}
+             >
+               Overdue
+             </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-8 space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="lg:col-span-8 space-y-6">
            {leads.map((item, i) => (
-             <div key={i} className="bg-white p-6 rounded-[2.5rem] shadow-premium border border-transparent hover:border-[#0a3d62] hover:translate-x-2 transition-all flex items-center justify-between group cursor-pointer" onClick={() => alert(`Details for ${item.name}`)}>
-                <div className="flex items-center gap-6">
+             <div key={i} className="bg-white p-8 rounded-[3rem] shadow-premium border border-transparent hover:border-[#0a3d62] hover:translate-x-3 transition-all flex items-center justify-between group cursor-pointer active:scale-[0.98]" onClick={() => alert(`Opening Full Record for ${item.name}`)}>
+                <div className="flex items-center gap-8">
                    <div className={clsx(
-                     "w-14 h-14 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm",
+                     "w-16 h-16 rounded-[1.75rem] flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm ring-4 ring-transparent group-hover:ring-slate-50",
                      item.type === 'Call' ? 'bg-emerald-50 text-emerald-500' : 'bg-indigo-50 text-indigo-500'
                    )}>
-                      {item.type === 'Call' ? <Phone className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+                      {item.type === 'Call' ? <Phone className="w-8 h-8" /> : <MessageCircle className="w-8 h-8" />}
                    </div>
                    <div>
-                      <h4 className="text-lg font-black text-[#0a3d62] leading-none mb-1">{item.name}</h4>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                      <h4 className="text-xl font-black text-[#0a3d62] leading-none mb-2 tracking-tighter">{item.name}</h4>
+                      <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
                         {item.type} • 
-                        <span className={clsx("font-black", item.overdue ? "text-rose-500" : "text-primary")}>
+                        <span className={clsx("font-black px-2 py-0.5 rounded-lg", item.overdue ? "bg-rose-50 text-rose-500" : "bg-emerald-50 text-emerald-500")}>
                           {item.status}
                         </span>
                       </p>
                    </div>
                 </div>
-                <div className="flex items-center gap-8">
-                   <div className="text-right">
-                      <p className={clsx("text-xs font-black", item.overdue ? "text-rose-500" : "text-[#0a3d62]")}>{item.time}</p>
-                      <p className="text-[10px] font-bold text-slate-300 uppercase">{item.overdue ? "Missed" : "Scheduled"}</p>
+                <div className="flex items-center gap-10">
+                   <div className="text-right hidden sm:block">
+                      <p className={clsx("text-sm font-black tracking-tighter", item.overdue ? "text-rose-500" : "text-[#0a3d62]")}>{item.time}</p>
+                      <p className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">{item.overdue ? "Missed" : "Scheduled"}</p>
                    </div>
-                   <button className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center hover:bg-[#0a3d62] hover:text-white transition-all active:scale-90 shadow-sm">
-                      <ArrowRight className="w-5 h-5" />
+                   <button className="w-14 h-14 bg-slate-50 rounded-[1.5rem] flex items-center justify-center hover:bg-[#0a3d62] hover:text-white transition-all active:scale-90 shadow-sm group-hover:shadow-lg">
+                      <ArrowRight className="w-6 h-6" />
                    </button>
                 </div>
              </div>

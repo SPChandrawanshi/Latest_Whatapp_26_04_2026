@@ -51,27 +51,27 @@ export function DataTable({ title, data = [], columns = [] }) {
                   </td>
                 ))}
                 <td className="px-8 py-6 whitespace-nowrap text-right">
-                  <div className="flex items-center justify-end gap-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button 
                       onClick={() => alert(`Viewing details for: ${row.name || 'Record'}`)}
-                      className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-[#0a3d62]/5 rounded-xl transition-all active:scale-90"
+                      className="w-11 h-11 flex items-center justify-center text-slate-400 hover:text-[#0a3d62] hover:bg-[#0a3d62]/5 rounded-xl transition-all active:scale-90 shadow-sm border border-transparent hover:border-[#0a3d62]/10"
                       title="View Details"
                     >
-                      <Eye className="w-4 h-4" />
+                      <Eye className="w-5 h-5" />
                     </button>
                     <button 
                       onClick={() => alert(`Editing: ${row.name || 'Record'}`)}
-                      className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-xl transition-all active:scale-90"
+                      className="w-11 h-11 flex items-center justify-center text-slate-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-xl transition-all active:scale-90 shadow-sm border border-transparent hover:border-emerald-100"
                       title="Edit Record"
                     >
-                      <Edit className="w-4 h-4" />
+                      <Edit className="w-5 h-5" />
                     </button>
                     <button 
                       onClick={() => confirm('Are you sure you want to delete this record?') && alert('Record deleted!')}
-                      className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all active:scale-90"
+                      className="w-11 h-11 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all active:scale-90 shadow-sm border border-transparent hover:border-rose-100"
                       title="Delete Record"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
                 </td>

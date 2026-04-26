@@ -17,50 +17,50 @@ export function Topbar({ onMenuClick }) {
 
   return (
     <header className="h-20 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-      <div className="flex items-center gap-4 flex-1">
+      <div className="flex items-center gap-6 flex-1">
         <button 
           onClick={onMenuClick}
-          className="p-2 lg:hidden hover:bg-slate-100 rounded-lg transition-all border border-slate-200 shadow-sm active:scale-95"
+          className="p-3 lg:hidden hover:bg-[#0a3d62]/5 rounded-2xl transition-all border border-slate-100 shadow-sm active:scale-90"
           title="Open Menu"
         >
-          <Menu className="w-6 h-6 text-slate-600" />
+          <Menu className="w-7 h-7 text-[#0a3d62]" />
         </button>
 
-        <div className="max-w-md w-full relative hidden md:block group">
+        <div className="max-w-xl w-full relative hidden md:block group">
           <Search className={clsx(
-            "w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 transition-colors",
-            searchQuery ? "text-primary" : "text-slate-400 group-hover:text-slate-600"
+            "w-6 h-6 absolute left-5 top-1/2 -translate-y-1/2 transition-colors",
+            searchQuery ? "text-[#0a3d62]" : "text-slate-300 group-hover:text-slate-500"
           )} />
           <input 
             type="text" 
-            placeholder="Search leads, chats, or tasks..." 
+            placeholder="Search anything across the platform..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:bg-white transition-all text-sm shadow-inner"
+            className="w-full pl-16 pr-6 py-4 bg-slate-50/50 border border-slate-100 rounded-[2rem] focus:outline-none focus:border-[#0a3d62] focus:bg-white focus:ring-4 focus:ring-[#0a3d62]/5 transition-all text-sm font-bold shadow-inner"
           />
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-6">
         <button 
-          className="p-2.5 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-xl transition-all relative group active:scale-90"
-          onClick={() => alert('Notifications coming soon!')}
+          className="p-3.5 text-slate-400 hover:text-[#0a3d62] hover:bg-[#0a3d62]/5 rounded-2xl transition-all relative group active:scale-90 shadow-sm"
+          onClick={() => alert('Notifications Panel opening...')}
           title="Notifications"
         >
-          <Bell className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-          <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white animate-pulse"></span>
+          <Bell className="w-6 h-6 group-hover:rotate-[15deg] transition-transform" />
+          <span className="absolute top-3 right-3 w-3 h-3 bg-rose-500 rounded-full border-[3px] border-white animate-pulse shadow-sm"></span>
         </button>
 
-        <div className="h-8 w-[1px] bg-slate-100 mx-2"></div>
+        <div className="h-10 w-[2px] bg-slate-100 mx-2 rounded-full"></div>
 
         <div className="relative">
           <button 
             onClick={() => setIsProfileOpen(!isProfileOpen)}
-            className="flex items-center gap-3 pl-2 group active:scale-95 transition-transform"
+            className="flex items-center gap-4 pl-2 group active:scale-95 transition-transform"
           >
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-black text-slate-800 leading-none capitalize">{user?.name || "User"}</p>
-              <p className="text-[10px] font-black text-primary mt-1 px-2 py-0.5 bg-primary/10 rounded-lg inline-block uppercase tracking-widest">
+              <p className="text-sm font-black text-[#0a3d62] tracking-tighter capitalize drop-shadow-sm">{user?.name || "User"}</p>
+              <p className="text-[9px] font-black text-white mt-1 px-2.5 py-0.5 bg-[#0a3d62] rounded-full inline-block uppercase tracking-[0.2em] shadow-sm">
                 {user?.role}
               </p>
             </div>
