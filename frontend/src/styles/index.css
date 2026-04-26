@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white border border-transparent px-4 py-2 rounded-lg transition-all duration-200 hover:border-primary hover:bg-white hover:text-primary active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-premium;
+  }
+  
+  .card-premium {
+    @apply bg-white rounded-2xl p-6 shadow-premium border border-transparent transition-all duration-200 hover:border-primary hover:shadow-lg;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-primary hover:border-primary transition-all duration-200 bg-white;
+  }
+}
