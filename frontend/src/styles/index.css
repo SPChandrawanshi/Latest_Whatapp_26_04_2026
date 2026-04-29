@@ -6,6 +6,8 @@
   body {
     @apply bg-slate-50 text-slate-900;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

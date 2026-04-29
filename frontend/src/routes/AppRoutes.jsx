@@ -2,11 +2,10 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Login } from '../pages/auth/Login';
+import { Signup } from '../pages/auth/Signup';
 import { RoleLayout } from '../layouts/RoleLayout';
 import { ROLES } from '../config/constants';
-import { ChatBoard } from '../pages/common/ChatBoard';
-
-// --- Direct Imports for Smooth Performance (Removing Lazy Flicker) ---
+// --- Direct Imports for Smooth Performance ---
 import SuperDashboard from '../pages/superadmin/Dashboard';
 import SuperAdmins from '../pages/superadmin/Admins';
 import SuperManagers from '../pages/superadmin/Managers';
@@ -16,28 +15,29 @@ import SuperBilling from '../pages/superadmin/Billing';
 import SuperSettings from '../pages/superadmin/Settings';
 
 import AdminDashboard from '../pages/admin/Dashboard';
-import AdminTeam from '../pages/admin/Team';
-import AdminLeads from '../pages/admin/Leads';
-import AdminAssign from '../pages/admin/AssignLeads';
+import AdminCustomers from '../pages/admin/Customers';
+import AdminAssign from '../pages/admin/AssignCustomers';
 import AdminReports from '../pages/admin/Reports';
 import AdminSettings from '../pages/admin/Settings';
 
-import ManagerDashboard from '../pages/manager/Dashboard';
-import ManagerTeam from '../pages/manager/Team';
-import ManagerTasks from '../pages/manager/Tasks';
-import ManagerPending from '../pages/manager/PendingLeads';
-import ManagerPerformance from '../pages/manager/Performance';
-
-import CounselorDashboard from '../pages/counselor/Dashboard';
-import CounselorLeads from '../pages/counselor/Leads';
 import CounselorFollowups from '../pages/counselor/FollowUps';
 import CounselorDocs from '../pages/counselor/Documents';
 import CounselorSettings from '../pages/counselor/Settings';
+
+import { UnifiedInbox } from '../components/social/UnifiedInbox';
+import WhatsAppPage from '../pages/admin/WhatsAppPage';
+import FacebookPage from '../pages/admin/FacebookPage';
+import InstagramPage from '../pages/admin/InstagramPage';
+import YouTubePage from '../pages/admin/YouTubePage';
+import Pricing from '../pages/admin/Pricing';
+import { CustomerChat } from '../pages/auth/CustomerChat';
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/customer-chat" element={<CustomerChat />} />
       
       {/* Super Admin Routes */}
       <Route element={<RoleLayout allowedRoles={[ROLES.SUPER_ADMIN]} />}>
@@ -45,7 +45,7 @@ export function AppRoutes() {
         <Route path="/superadmin/admins" element={<SuperAdmins />} />
         <Route path="/superadmin/managers" element={<SuperManagers />} />
         <Route path="/superadmin/counselors" element={<SuperCounselors />} />
-        <Route path="/superadmin/chats" element={<ChatBoard />} />
+        <Route path="/superadmin/chats" element={<UnifiedInbox />} />
         <Route path="/superadmin/reports" element={<SuperReports />} />
         <Route path="/superadmin/billing" element={<SuperBilling />} />
         <Route path="/superadmin/settings" element={<SuperSettings />} />
@@ -54,32 +54,35 @@ export function AppRoutes() {
       {/* Admin Routes */}
       <Route element={<RoleLayout allowedRoles={[ROLES.ADMIN]} />}>
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/team" element={<AdminTeam />} />
-        <Route path="/admin/leads" element={<AdminLeads />} />
+        <Route path="/admin/customers" element={<AdminCustomers />} />
         <Route path="/admin/assign" element={<AdminAssign />} />
-        <Route path="/admin/chats" element={<ChatBoard />} />
+        <Route path="/admin/chats" element={<UnifiedInbox />} />
+        <Route path="/admin/whatsapp" element={<WhatsAppPage />} />
+        <Route path="/admin/facebook" element={<FacebookPage />} />
+        <Route path="/admin/instagram" element={<InstagramPage />} />
+        <Route path="/admin/youtube" element={<YouTubePage />} />
+        <Route path="/admin/pricing" element={<Pricing />} />
         <Route path="/admin/reports" element={<AdminReports />} />
         <Route path="/admin/settings" element={<AdminSettings />} />
       </Route>
 
-      {/* Manager Routes */}
-      <Route element={<RoleLayout allowedRoles={[ROLES.MANAGER]} />}>
-        <Route path="/manager/dashboard" element={<ManagerDashboard />} />
-        <Route path="/manager/team" element={<ManagerTeam />} />
-        <Route path="/manager/tasks" element={<ManagerTasks />} />
-        <Route path="/manager/pending" element={<ManagerPending />} />
-        <Route path="/manager/chats" element={<ChatBoard />} />
-        <Route path="/manager/performance" element={<ManagerPerformance />} />
-      </Route>
-
       {/* Counselor Routes */}
       <Route element={<RoleLayout allowedRoles={[ROLES.COUNSELOR]} />}>
-        <Route path="/counselor/dashboard" element={<CounselorDashboard />} />
-        <Route path="/counselor/leads" element={<CounselorLeads />} />
-        <Route path="/counselor/chats" element={<ChatBoard />} />
+        <Route path="/counselor/dashboard" element={<AdminDashboard />} />
+        <Route path="/counselor/customers" element={<AdminCustomers />} />
+        <Route path="/counselor/chats" element={<UnifiedInbox />} />
         <Route path="/counselor/followups" element={<CounselorFollowups />} />
         <Route path="/counselor/documents" element={<CounselorDocs />} />
         <Route path="/counselor/settings" element={<CounselorSettings />} />
+      </Route>
+
+      {/* Manager Routes */}
+      <Route element={<RoleLayout allowedRoles={[ROLES.MANAGER]} />}>
+        <Route path="/manager/dashboard" element={<AdminDashboard />} />
+        <Route path="/manager/customers" element={<AdminCustomers />} />
+        <Route path="/manager/chats" element={<UnifiedInbox />} />
+        <Route path="/manager/reports" element={<AdminReports />} />
+        <Route path="/manager/settings" element={<AdminSettings />} />
       </Route>
 
       <Route path="/" element={<Navigate to="/login" replace />} />

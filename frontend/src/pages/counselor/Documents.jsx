@@ -1,33 +1,46 @@
 import React from 'react';
 import { FileText, Download, Upload, Clock, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { clsx } from 'clsx';
+
+import { useToast } from '../../context/ToastContext';
 
 export default function Documents() {
+  const { showToast } = useToast();
   const [files, setFiles] = React.useState([
-    { name: "Aadhar_Card_SID.pdf", type: "ID PROOF", status: "Verified", date: "24 Apr" },
-    { name: "PAN_Card_SID.jpg", type: "ID PROOF", status: "Pending", date: "24 Apr" },
-    { name: "Passport_Scan_R.pdf", type: "ADDRESS", status: "Verified", date: "23 Apr" },
-    { name: "Sign_Auth_SID.png", type: "SIGNATURE", status: "Rejected", date: "22 Apr" },
-    { name: "Salary_Slip_M.pdf", type: "INCOME", status: "Verified", date: "21 Apr" },
+    { id: 1, name: "Aadhar_Card_SID.pdf", type: "ID PROOF", status: "Verified", date: "Today" },
+    { id: 2, name: "PAN_Card_SID.jpg", type: "ID PROOF", status: "Pending", date: "Just Now" },
+    { id: 3, name: "Passport_Scan_R.pdf", type: "ADDRESS", status: "Verified", date: "1h ago" },
+    { id: 4, name: "Sign_Auth_SID.png", type: "SIGNATURE", status: "Rejected", date: "3h ago" },
+    { id: 5, name: "Salary_Slip_M.pdf", type: "INCOME", status: "Verified", date: "Yesterday" },
   ]);
 
-  const handleUpload = () => {
-    alert('Opening file selector...');
+  const toggleStatus = (id) => {
+    setFiles(prev => prev.map(f => {
+      if (f.id === id) {
+        const nextStatus = f.status === 'Verified' ? 'Rejected' : f.status === 'Rejected' ? 'Pending' : 'Verified';
+        showToast(`Document status changed to ${nextStatus}`, 'info');
+        return { ...f, status: nextStatus };
+      }
+      return f;
+    }));
   };
 
-  const handleDownload = (fileName) => {
-    alert(`Downloading ${fileName}...`);
-  };
+  const handleUpload = () => showToast('Secure File Selector Initialized...', 'info');
+  const handleDownload = (fileName) => showToast(`Secure Download Started: ${fileName}`, 'success');
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-start">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
         <div>
-          <h2 className="text-3xl font-black text-[#0a3d62] tracking-tighter uppercase italic">DOCUMENT VAULT</h2>
-          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-1">Verify and Manage Client KYC Documents</p>
+          <h2 className="text-[12px] font-bold text-[#0a3d62] uppercase tracking-tight">Document Vault</h2>
+          <div className="text-slate-400 text-[12px] font-normal mt-0.5 tracking-wide flex items-center gap-2">
+            <div className="w-1 h-1 rounded-full bg-[#0a3d62]/40" />
+            Secure Repository for Client KYC & Verification
+          </div>
         </div>
         <button 
           onClick={handleUpload}
-          className="px-6 py-3 bg-[#0a3d62] text-white rounded-2xl shadow-xl font-black uppercase text-xs tracking-widest flex items-center gap-2 hover:translate-y-[-2px] hover:shadow-[#0a3d62]/20 active:scale-95 transition-all"
+          className="px-8 py-3 bg-[#0a3d62] text-white rounded-xl shadow-premium font-semibold uppercase text-[12px] tracking-wide flex items-center gap-3 hover:opacity-95 active:scale-95 transition-all"
         >
            <Upload className="w-4 h-4" />
            New Upload
@@ -46,29 +59,33 @@ export default function Documents() {
                 </div>
              </div>
              
-             <h4 className="text-sm font-black text-slate-800 truncate mb-1">{file.name}</h4>
-             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{file.type}</p>
+             <h4 className="text-[12px] font-bold text-slate-800 truncate mb-1">{file.name}</h4>
+             <p className="text-[12px] font-medium text-slate-400 uppercase tracking-wide">{file.type}</p>
              
              <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-50">
                 <span className="text-[9px] font-bold text-slate-300 uppercase">{file.date}</span>
                 <div className="flex gap-2">
-                   <button 
-                     onClick={() => alert('Viewing document...')}
-                     className="p-2 bg-slate-50 text-slate-400 rounded-xl hover:bg-[#0a3d62] hover:text-white transition-all active:scale-90"
-                   >
-                      <CheckCircle2 className="w-4 h-4" />
-                   </button>
-                   <button 
-                     onClick={() => handleDownload(file.name)}
-                     className="p-2 bg-slate-50 text-slate-400 rounded-xl hover:bg-[#0a3d62] hover:text-white transition-all active:scale-90"
-                   >
-                      <Download className="w-4 h-4" />
-                   </button>
-                </div>
-             </div>
+                    <button 
+                      onClick={() => toggleStatus(file.id)}
+                      className={clsx(
+                        "p-2 rounded-xl transition-all active:scale-90 shadow-premium",
+                        file.status === 'Verified' ? "bg-emerald-500 text-white" : "bg-slate-50 text-slate-400"
+                      )}
+                      title="Toggle Status"
+                    >
+                       <CheckCircle2 className="w-4 h-4" />
+                    </button>
+                    <button 
+                      onClick={() => handleDownload(file.name)}
+                      className="p-2 bg-slate-50 text-slate-400 rounded-xl hover:bg-[#0a3d62] hover:text-white transition-all active:scale-90 shadow-premium"
+                    >
+                       <Download className="w-4 h-4" />
+                    </button>
+                 </div>
+              </div>
 
-             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-[30px] translate-x-8 translate-y-[-8px]" />
-          </div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#0a3d62]/5 rounded-full blur-[30px] translate-x-8 translate-y-[-8px]" />
+           </div>
         ))}
       </div>
 

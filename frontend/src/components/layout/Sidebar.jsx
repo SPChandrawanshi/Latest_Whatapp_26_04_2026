@@ -20,43 +20,72 @@ export function Sidebar({ role, isOpen, onClose }) {
       )}
 
       <aside className={clsx(
-        "fixed lg:static inset-y-0 left-0 w-72 bg-[#0a3d62] text-white z-50 transform transition-transform duration-200 ease-in-out lg:translate-x-0",
+        "fixed lg:static inset-y-0 left-0 w-60 bg-[#0a3d62] text-white z-50 transform transition-transform duration-200 ease-in-out lg:translate-x-0",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="h-full flex flex-col">
           {/* Logo & Close Button */}
           <div className="p-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
-                <span className="text-[#0a3d62] font-bold text-xl uppercase">W</span>
+                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-[#0a3d62] font-black text-xl">W</span>
+                </div>
+                <h1 className="text-[14px] font-black tracking-tight uppercase">WhatsApp</h1>
               </div>
-              <h1 className="text-xl font-black tracking-tighter uppercase italic">WhatsApp</h1>
+              <button onClick={onClose} className="lg:hidden p-2 hover:bg-white/10 rounded-lg">
+                <X className="w-6 h-6" />
+              </button>
             </div>
-            <button onClick={onClose} className="lg:hidden p-2 hover:bg-white/10 rounded-lg">
-              <X className="w-6 h-6" />
-            </button>
-          </div>
+  
+            {/* Navigation Items */}
+            <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+              {currentMenu.map((item) => {
+                if (item.children) {
+                  return (
+                    <div key={item.title} className="mb-2">
+                      <div className="flex items-center gap-3 px-4 py-3 text-white/40 mt-4 mb-1">
+                        <item.icon className="w-4 h-4" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">{item.title}</span>
+                      </div>
+                      <div className="space-y-1 pl-4 border-l border-white/10 ml-6">
+                        {item.children.map(child => (
+                          <NavLink
+                            key={child.path}
+                            to={child.path}
+                            onClick={onClose}
+                            className={({ isActive }) => clsx(
+                              "flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200 group",
+                              isActive 
+                                ? "bg-white text-[#0a3d62] shadow-premium font-semibold" 
+                                : "text-white/70 hover:bg-white/10 hover:text-white"
+                            )}
+                          >
+                            <child.icon className="w-4 h-4 opacity-80" />
+                            <span className="text-[11px] font-bold tracking-tight">{child.title}</span>
+                          </NavLink>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
 
-          {/* Navigation Items */}
-          <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-            {currentMenu.map((item) => {
-              return (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  onClick={onClose}
-                  className={({ isActive }) => clsx(
-                    "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
-                    isActive 
-                      ? "bg-white text-[#0a3d62] shadow-lg font-medium" 
-                      : "text-white/70 hover:bg-white/10 hover:text-white"
-                  )}
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span>{item.title}</span>
-                </NavLink>
-              );
-            })}
+                return (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    onClick={onClose}
+                    className={({ isActive }) => clsx(
+                      "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
+                      isActive 
+                        ? "bg-white text-[#0a3d62] shadow-premium font-semibold" 
+                        : "text-white/70 hover:bg-white/10 hover:text-white"
+                    )}
+                  >
+                    <item.icon className="w-5 h-5 opacity-80" />
+                    <span className="text-[12px] font-bold tracking-tight">{item.title}</span>
+                  </NavLink>
+                );
+              })}
           </nav>
 
           {/* User Section & Logout */}
@@ -65,8 +94,8 @@ export function Sidebar({ role, isOpen, onClose }) {
               onClick={logout}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-red-500 hover:text-white transition-all duration-200"
             >
-              <LogOut className="w-5 h-5" />
-              <span>Logout</span>
+              <LogOut className="w-5 h-5 opacity-80" />
+              <span className="text-[14px] font-medium tracking-tight">Logout</span>
             </button>
           </div>
         </div>
